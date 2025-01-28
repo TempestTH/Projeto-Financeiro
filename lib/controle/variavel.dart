@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AppState with ChangeNotifier {
+class AppState extends ChangeNotifier {
+  static AppState instance = AppState();
+  
   String _email = "";
   String get email => _email;
 

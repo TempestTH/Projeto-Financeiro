@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:segredo/controle/variavel.dart';
 import 'package:segredo/firebase_options.dart';
+import 'package:segredo/vis%C3%A3o/Home_page.dart';
 import 'package:segredo/vis%C3%A3o/login_page.dart';
 
 void main() async {
@@ -12,22 +13,25 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
     create: (_) => AppState(),
-    child: const MyApp(),
+    child: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: LoginPage(),
+    return AnimatedBuilder(
+      animation: AppState.instance,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: 'Login',
+          routes: {
+            'Login': (context) => LoginPage(),
+            'HomePage': (context) => HomePage()
+          },
+        );
+      },
     );
   }
 }

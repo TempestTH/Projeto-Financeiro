@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                         } else {
                           if (resultado.docs[0]['email'] == context.read<AppState>().email &&
                               resultado.docs[0]['senha'] == context.read<AppState>().senha) {
-                            print('Logou');
+                            Navigator.of(context).pushReplacementNamed('HomePage');
                           }else{
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               backgroundColor:
